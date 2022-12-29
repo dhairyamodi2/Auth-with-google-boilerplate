@@ -1,22 +1,26 @@
-import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, Head, Header, Headers, Req, Res, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { GoogleOauthGuard } from './guards';
-
+import { AuthService } from './auth.service';
 
 
 @Controller('auth')
 export class AuthController {
+    constructor(private authService: AuthService){
+
+    }
     @Get('google')
-    @UseGuards(GoogleOauthGuard)
-    async auth(){
-        return "hello";
+    async auth(@Headers('token') token, @Headers('client_id') client_id){
+        if(!token || !client_id){
+            throw new UnauthorizedException();
+        }
+
+        return this.authService.verifyCredentials(token, client_id);
     }
 
     @Get('/google/callback')
-    @UseGuards(GoogleOauthGuard)
     async googleAuthCallback(@Req() req: Request, @Res() res: Response){
         console.log(req.user);
-        res.redirect('http://localhost:3000/');
+        return {user: req.user}
     }
 
 }
