@@ -1,0 +1,35 @@
+.home-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 10px 50px;
+}
+
+.home-page>.links {
+    margin: 10px 5px;
+    padding: 10px 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.home-page>.links:first-child {
+    color: black;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+
+.home-page>.links:first-child:hover {
+    transform: scale(1.03);
+}
+
+.home-page>.links:nth-child(2) {
+    color: white;
+    background-color: black;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+
+.home-page>.links:nth-child(2):hover {
+    transform: scale(1.03);
+}
