@@ -11,8 +11,7 @@ export class AuthController {
     }
     @Get('google')
     async auth(@Headers('token') token, @Headers('client_id') client_id){
-        console.log(token);
-        console.log(client_id);
+
         if(!token || !client_id){
             throw new UnauthorizedException();
         }
@@ -42,8 +41,7 @@ export class AuthController {
     }
 
     @Post('registration/bearer/completeprofile')
-
-    async bearerCompleteProfile(@Headers('token') token, @Headers('client_id') client_id, @Body() dto : BearerDto) {
+    async bearerCompleteProfile(@Body() dto : BearerDto, @Headers('token') token, @Headers('client_id') client_id) {
         dto.type = 'user';
 
         return this.authService.bearerCompleteProfile(token, client_id, dto);

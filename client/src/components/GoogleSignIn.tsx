@@ -19,10 +19,8 @@ const GoogleSignIn: React.FC<Props> = (props) => {
             sessionStorage.setItem('credentials', credentialResponse.credential);
             sessionStorage.setItem('client_id', credentialResponse.clientId);
         }
-        console.log('here');
-        if(props.signup === true){
-            navigate('/auth/bearer/completeprofile')
-        }
+        navigate('/auth/bearer/completeprofile')
+        
     }
     return (
         <div className="google-services">
