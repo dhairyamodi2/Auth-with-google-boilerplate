@@ -52,9 +52,6 @@ export class BearerDto {
     @IsNotEmpty()
     email: string;
 
-    @IsNotEmpty()
-    password: string;
-
     @IsOptional()
     type: string;
 

@@ -24,9 +24,32 @@ export class AuthService {
                 audience: client_id
             })
 
-            const user = ticket.getPayload();
+            const user_data = ticket.getPayload();
 
-            return { success: true , name : user.name, email: user.email}
+            const user = await this.prisma.user.findUnique({where: {email: user_data.email}});
+
+            if(user){
+
+                const Jwt_token = await this.generateToken(user.id, user.email, user.type);
+                return {
+                    success: false,
+                    message: "User already exist!",
+                    data: {
+                        userAlreadyExist: true,
+                        token: Jwt_token,
+                        user
+                    }
+                }
+            }
+            return {
+                success: true,
+                message: "",
+                data: {
+                    userAlreadyExist: false,
+                    name: user_data.name,
+                    email: user_data.email
+                }
+            }
         } catch (error) {
             return {success: false, error: "Session expired please try again!"}
         }
