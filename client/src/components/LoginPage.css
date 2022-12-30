@@ -60,3 +60,11 @@
 .sign-button:hover{
     transform: scale(1.02);
 }
+
+.google-services{
+    margin: 15px;
+}
+
+.signup{
+    margin-top: 10px;
+}
