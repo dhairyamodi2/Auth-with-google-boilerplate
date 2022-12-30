@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import img from "../assets/img.jpg";
 import "./LoginPage.css";
 import {FcGoogle} from 'react-icons/fc';
+import GoogleSignIn from "./GoogleSignIn";
 
 const LoginPage : React.FC = () => {
     return (
@@ -11,9 +12,7 @@ const LoginPage : React.FC = () => {
                 <h3>Company Name</h3>
                 <h4>Log In</h4>
 
-                <Link to={''} className='google-sign'>
-                    <FcGoogle className="google-icon"/>Continue with Google
-                </Link>
+                <GoogleSignIn signup={false}/>
 
                 <span className="span-text">OR LOGIN WITH EMAIL</span>
                 <input type={'email'} placeholder='Email' className="google-sign input">
